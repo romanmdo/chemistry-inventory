@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de elementos del labo - Colegio PROA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9, #a5d6a7);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #2e7d32;
+            color: #fff;
+            padding: 20px 40px;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 2em; /* Mayor tamaño para el título */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            max-width: fit-content;
+            margin-right: 5%;
+        }
+
+        header .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header .logo {
+            font-weight: bold;
+            font-size: 2.2em; /* Enfatizar el nombre del colegio */
+            margin-right: 10px;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        /* Formulario */
+        h3 {
+            font-size: 1.6em;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        form {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: 600;
+            font-size: 1em;
+            color: #555;
+            text-align: left;
+        }
+        input {
+            padding: 10px;
+            font-size: 0.95em;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        input:focus {
+            border-color: #2e7d32;
+        }
+        button {
+            grid-column: span 2;
+            padding: 12px;
+            background-color: #2e7d32;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: fit-content;
+            margin: 0 auto;
+        }
+        button:hover {
+            background-color: #1b5e20;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Tabla */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            font-size: 1em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #2e7d32;
+            color: #fff;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #e0f2f1;
+            transition: background-color 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Colegio PROA - Inventario de elementos del labo
+    </header>
+
+    <div class="container">
+        <h3>Registrar Elemento</h3>
+        <form id="ElementoForm">
+            <div>
+                <label for="nombre"> Identificador </label>
+                <input type="text" id="identificador" name="identificador" required>
+            </div>
+            <div>
+                <label for="nombre">Nombre del Elemento</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div>
+                <label for="cantidad">Descripción</label>
+                <input type="descripcion" id="descripcion" name="descripcion" required>
+            </div>
+            <div>
+                <label for="cantidad">Cantidad</label>
+                <input type="number" id="cantidad" name="cantidad" required>
+            </div>
+            <div>
+                <label for="ubicacion">Ubicación</label>
+                <input type="text" id="ubicacion" name="ubicacion" required>
+            </div>
+            <button type="submit">Agregar Elemento</button>
+        </form>
+
+        <h3 style="margin-top: 30px;">Inventario Actual</h3>
+        <table id="inventarioTable">
+            <thead>
+                <tr>
+                    <th>Identificador</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Ubicación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se agregarán las filas del inventario -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const form = document.getElementById('ElementoForm');
+        const tableBody = document.getElementById('inventarioTable').querySelector('tbody');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const identificador = form.identificador.value;
+            const nombre = form.nombre.value;
+            const descripcion = form.descripcion.value;
+            const cantidad = form.cantidad.value;
+            const ubicacion = form.ubicacion.value;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${identificador}</td>
+                <td>${nombre}</td>
+                <td>${descripcion}</td>
+                <td>${cantidad}</td>
+                <td>${ubicacion}</td>
+            `;
+            tableBody.appendChild(row);
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
