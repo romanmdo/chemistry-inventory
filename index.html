@@ -12,64 +12,66 @@
             margin: 0;
             padding: 0;
         }
+
+        .botones-buscar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1%; /* Reduce el margen superior */
+            gap: 10px; /* Espaciado entre los elementos */
+        }
+
+
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #e8f5e9, #a5d6a7);
             color: #333;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 2%;
         }
         
         /* Header */
         header {
             background-color: #2e7d32;
             color: #fff;
-            padding: 20px 40px;
+            padding: 15px;
             text-align: center;
             border-radius: 8px;
-            font-size: 2em; /* Mayor tamaño para el título */
+            font-size: 1.5em;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-            margin-bottom: 30px;
-            max-width: fit-content;
-            margin-right: 5%;
-        }
-
-        header .header-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        header .logo {
-            font-weight: bold;
-            font-size: 2.2em; /* Enfatizar el nombre del colegio */
-            margin-right: 10px;
-        }
-
-        .container {
-            max-width: 700px;
             width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 50%;
+            width: 50%;
             background-color: #ffffff;
             border-radius: 12px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-            padding: 30px;
+            padding: 1%;
             text-align: center;
         }
         
-        /* Formulario */
+        /* Títulos */
         h3 {
-            font-size: 1.6em;
+            font-size: 1.5em;
             color: #2e7d32;
-            margin-bottom: 15px;
+            margin-bottom: 2%;
+            text-align: center;
         }
+
+        /* Formulario */
         form {
             display: grid;
             gap: 10px;
             grid-template-columns: 1fr 1fr;
-            margin-bottom: 20px;
+            margin-bottom: 5%;
         }
         label {
             font-weight: 600;
@@ -78,7 +80,7 @@
             text-align: left;
         }
         input {
-            padding: 10px;
+            padding: 2%;
             font-size: 0.95em;
             border: 2px solid #ddd;
             border-radius: 8px;
@@ -90,7 +92,7 @@
         }
         button {
             grid-column: span 2;
-            padding: 12px;
+            padding: 2%;
             background-color: #2e7d32;
             color: #fff;
             border: none;
@@ -99,8 +101,6 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: fit-content;
             margin: 0 auto;
         }
         button:hover {
@@ -110,9 +110,15 @@
         }
         
         /* Tabla */
+        .table-container {
+            margin-top: 20px;
+            overflow-x: auto; /* Scroll horizontal */
+            display: flex;
+            justify-content: center;
+        }
         table {
             width: 100%;
-            margin-top: 20px;
+            max-width: 750px;
             border-collapse: collapse;
             font-size: 1em;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -136,18 +142,77 @@
             background-color: #e0f2f1;
             transition: background-color 0.2s;
         }
+
+        /* Ajuste general para pantallas medianas */
+        @media (max-width: 768px) {
+            .container {
+                width: 80%; /* Reduce el ancho */
+                padding: 5%; /* Mayor espacio interno */
+            }
+
+            form {
+                grid-template-columns: 1fr; /* Cambia a una sola columna */
+                gap: 15px; /* Más espacio entre los campos */
+            }
+
+            button {
+                grid-column: span 1; /* Asegura que ocupe el ancho completo */
+            }
+
+            .botones-buscar {
+                flex-direction: column; /* Los botones y campos en una sola columna */
+                align-items: stretch; /* Alinear al ancho completo */
+                gap: 5px; /* Espaciado entre elementos */
+            }
+
+            input, button {
+                width: 100%; /* Ocupa todo el ancho del contenedor */
+            }
+        }
+
+        /* Ajuste para pantallas pequeñas (teléfonos móviles) */
+        @media (max-width: 480px) {
+            header {
+                font-size: 1.2em; /* Reduce el tamaño del texto */
+                padding: 10px;
+            }
+
+            .container {
+                width: 95%; /* Ancho casi completo en móviles */
+                padding: 5%; /* Espaciado cómodo */
+            }
+
+            input, button {
+                font-size: 0.85em; /* Reduce el tamaño del texto */
+            }
+
+            label {
+                font-size: 0.9em; /* Texto más pequeño para las etiquetas */
+            }
+
+            .table-container {
+                max-width: 100%; /* Ajusta la tabla al ancho del contenedor */
+                overflow-x: scroll; /* Permite desplazamiento horizontal si es necesario */
+            }
+
+            table th, table td {
+                font-size: 0.75em; /* Reduce el tamaño de las celdas */
+                padding: 10px; /* Espacio interno más pequeño */
+            }
+        }
+
     </style>
 </head>
 <body>
     <header>
-        Colegio PROA - Inventario de elementos del labo
+        Colegio PROA - Inventario Laboratorio
     </header>
 
     <div class="container">
         <h3>Registrar Elemento</h3>
         <form id="ElementoForm">
             <div>
-                <label for="nombre"> Identificador </label>
+                <label for="identificador">Identificador</label>
                 <input type="text" id="identificador" name="identificador" required>
             </div>
             <div>
@@ -155,8 +220,8 @@
                 <input type="text" id="nombre" name="nombre" required>
             </div>
             <div>
-                <label for="cantidad">Descripción</label>
-                <input type="descripcion" id="descripcion" name="descripcion" required>
+                <label for="descripcion">Descripción</label>
+                <input type="text" id="descripcion" name="descripcion" required>
             </div>
             <div>
                 <label for="cantidad">Cantidad</label>
@@ -166,33 +231,95 @@
                 <label for="ubicacion">Ubicación</label>
                 <input type="text" id="ubicacion" name="ubicacion" required>
             </div>
+            
+            <div class="botones-buscar">
+                <label for="buscarNombre">Buscar por Nombre:</label>
+                <input type="text" id="buscarNombre" placeholder="Ingrese el nombre">
+                <button id="botonBuscarNombre">Buscar</button>
+            </div>
+            <div class="botones-buscar">
+                <label for="buscarUbicacion">Buscar por Ubicación:</label>
+                <input type="text" id="buscarUbicacion" placeholder="Ingrese la ubicación">
+                <button id="botonBuscarUbicacion">Buscar</button>
+            </div>
+            
+    
             <button type="submit">Agregar Elemento</button>
         </form>
 
-        <h3 style="margin-top: 30px;">Inventario Actual</h3>
-        <table id="inventarioTable">
-            <thead>
-                <tr>
-                    <th>Identificador</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Cantidad</th>
-                    <th>Ubicación</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Aquí se agregarán las filas del inventario -->
-            </tbody>
-        </table>
+        <h3>Inventario Actual</h3>  
+        <div class="table-container">
+            <table id="inventarioTable">
+                <thead>
+                    <tr>
+                        <th>Identificador</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Ubicación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Filas del inventario -->
+                </tbody>
+            </table>
+        </div>
+
+
     </div>
 
     <script>
+        const buscarNombreInput = document.getElementById('buscarNombre');
+        const buscarUbicacionInput = document.getElementById('buscarUbicacion');
+        const botonBuscarNombre = document.getElementById('botonBuscarNombre');
+        const botonBuscarUbicacion = document.getElementById('botonBuscarUbicacion');
         const form = document.getElementById('ElementoForm');
         const tableBody = document.getElementById('inventarioTable').querySelector('tbody');
 
+
+        // Función para buscar en la tabla
+        function buscarEnTabla(columnaIndex, valor) {
+            const filas = document.querySelectorAll('#inventarioTable tbody tr');
+            let encontrado = false;
+
+            filas.forEach(fila => {
+                const celda = fila.children[columnaIndex].textContent.toLowerCase();
+                if (celda.includes(valor.toLowerCase())) {
+                    fila.style.backgroundColor = '#e0f7fa'; // Resaltar fila
+                    encontrado = true;
+                } else {
+                    fila.style.backgroundColor = ''; // Restaurar color original
+                }
+            });
+
+            if (!encontrado) {
+                alert('No se encontraron coincidencias.');
+            }
+        }
+
+        // Evento para buscar por Nombre
+        botonBuscarNombre.addEventListener('click', () => {
+            const valor = buscarNombreInput.value.trim();
+            if (valor) {
+                buscarEnTabla(1, valor); // Columna 1 es "Nombre"
+            } else {
+                alert('Por favor, ingrese un nombre para buscar.');
+            }
+        });
+
+        // Evento para buscar por Ubicación
+        botonBuscarUbicacion.addEventListener('click', () => {
+            const valor = buscarUbicacionInput.value.trim();
+            if (valor) {
+                buscarEnTabla(4, valor); // Columna 4 es "Ubicación"
+            } else {
+                alert('Por favor, ingrese una ubicación para buscar.');
+            }
+        });
+
         form.addEventListener('submit', function(event) {
             event.preventDefault();
-            
+
             const identificador = form.identificador.value;
             const nombre = form.nombre.value;
             const descripcion = form.descripcion.value;
